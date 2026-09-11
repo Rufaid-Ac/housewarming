@@ -703,7 +703,7 @@ const SectionRSVP = () => {
     };
 
     try {
-      const response = await fetch('/', {
+      const response = await fetch('/index.html', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: encode({ 
