@@ -686,7 +686,7 @@ const SectionRSVP = () => {
   const [status, setStatus] = useState('idle'); // idle, submitting, success, error
   const [errorMsg, setErrorMsg] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.name.trim()) {
       setErrorMsg('Please enter your name.');
@@ -696,28 +696,22 @@ const SectionRSVP = () => {
     
     setStatus('submitting');
     
-    const encode = (data) => {
-      return Object.keys(data)
-        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-        .join("&");
-    };
-
-    try {
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode({ 
-          'form-name': 'rsvp', 
-          ...formData,
-          attendance: formData.attendance ? 'Joyfully Accept' : 'Regretfully Decline'
-        })
-      });
-      if (!response.ok) throw new Error('Failed to submit');
-      setStatus('success');
-    } catch (err) {
-      setErrorMsg('Something went wrong. Please try again.');
-      setStatus('error');
+    const attendanceText = formData.attendance ? 'Joyfully Accept' : 'Regretfully Decline';
+    let text = `Hello, here is my RSVP for the AALAM Housewarming:\n\n*Name:* ${formData.name}\n*Attending:* ${attendanceText}`;
+    
+    if (formData.attendance) {
+      text += `\n*Total Guests:* ${formData.guestCount}`;
     }
+    
+    if (formData.message.trim()) {
+      text += `\n*Message:* ${formData.message}`;
+    }
+
+    // Use +91 for India country code
+    const whatsappUrl = `https://wa.me/919447000061?text=${encodeURIComponent(text)}`;
+    
+    window.open(whatsappUrl, '_blank');
+    setStatus('success');
   };
 
   return (
