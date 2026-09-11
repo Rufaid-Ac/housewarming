@@ -13,11 +13,12 @@
   </head>
   <body>
     <!-- A hidden form to help Netlify detect the RSVP form -->
-    <form name="rsvp" data-netlify="true" hidden>
+    <form name="rsvp" action="/" data-netlify="true" hidden>
       <input type="text" name="name" />
       <input type="text" name="attendance" />
       <input type="number" name="guestCount" />
       <textarea name="message"></textarea>
+      <button type="submit">Submit</button>
     </form>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
