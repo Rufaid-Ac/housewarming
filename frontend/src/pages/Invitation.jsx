@@ -149,7 +149,7 @@ const InvitationCover = ({ config, onOpen }) => {
           
           <motion.span 
             animate={{ opacity: isOpening ? 0 : 1 }}
-            className="text-[#B89A5A] font-sans text-[10px] md:text-xs tracking-[4px] uppercase"
+            className="text-[#B89A5A] font-sans text-xs md:text-sm tracking-[5px] uppercase font-bold"
           >
             Tap to open
           </motion.span>
@@ -270,7 +270,7 @@ const SectionIntro = () => {
         >
           <ChevronDown size={24} strokeWidth={1.5} />
         </motion.div>
-        <p className="text-[#B59A62]/60 text-[10px] tracking-[0.3em] uppercase">Scroll to discover</p>
+        <p className="text-[#B59A62]/80 text-xs md:text-sm tracking-[0.3em] uppercase font-bold">Scroll to discover</p>
       </motion.div>
     </div>
   );
